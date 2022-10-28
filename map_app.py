@@ -26,9 +26,9 @@ fig = px.scatter_mapbox(data[data.clae2_desc.isin(filtro)],lat = 'lat',lon = 'lo
                 hover_data={'empleo':True,'empleo_rep':False,'lat':False,'lon':False,'clae2_desc':False},
                 #hover_data={'empleo':True,'lat':False,'lon':False,'clae2_desc':False},
                 hover_name='clae2_desc',
-                width = 1000,
+                #width = 1000,
                 labels={'clae2_desc':'Rama'}
                 )
 fig.update_layout(mapbox_style = 'open-street-map')
 
-st.plotly_chart(fig)
+st.plotly_chart(fig,use_container_width=True)
