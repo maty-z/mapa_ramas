@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-data0 = pd.read_csv(r'https://raw.githubusercontent.com/maty-z/mapa_ramas/main/distribucion_establecimientos_productivos_descripciones_AMBA_salud_educacion_grupo0.csv?token=GHSAT0AAAAAAB2PWACUIW7GKF4YJ2OI6I2WY23MOYQ')
-data1 = pd.read_csv(r'https://raw.githubusercontent.com/maty-z/mapa_ramas/main/distribucion_establecimientos_productivos_descripciones_AMBA_salud_educacion_grupo1.csv?token=GHSAT0AAAAAAB2PWACV3OBPSLQHJDVOAY2YY23MP2A')
+data0 = pd.read_csv(r'https://raw.githubusercontent.com/maty-z/mapa_ramas/main/distribucion_establecimientos_productivos_descripciones_AMBA_salud_educacion_grupo0.csv')
+data1 = pd.read_csv(r'https://raw.githubusercontent.com/maty-z/mapa_ramas/main/distribucion_establecimientos_productivos_descripciones_AMBA_salud_educacion_grupo1.csv')
 data = pd.concat([data0,data1])[['ID','lat','lon','clae2_desc','empleo','empleo_rep']]
 
 '''data0_ = st.file_uploader('Data0')
