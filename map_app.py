@@ -15,7 +15,7 @@ ramas_agrupadas['Energia'] = [ 'Suministro de electricidad, gas, vapor y aire ac
 
 st.write('Mapa')
 
-filtro_sup = st.multiselect('Ramas',ramas_agrupadas,ramas_agrupadas)
+filtro_sup = st.multiselect('Ramas',ramas_agrupadas,[])
 filtro = []
 for k in filtro_sup:
     filtro = filtro+ramas_agrupadas[k]
