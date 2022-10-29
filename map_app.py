@@ -13,7 +13,7 @@ ramas_agrupadas['Alimentacion'] = ['Elaboración de productos alimenticios']
 ramas_agrupadas['Energia'] = [ 'Suministro de electricidad, gas, vapor y aire acondicionado',
                                 'Captación, tratamiento y distribución de agua']    
 
-st.write('Mapa')
+st.title('Mapa: fuerza obrera en el AMBA')
 
 filtro_sup = st.multiselect('Ramas',ramas_agrupadas,['Transporte'])
 filtro = []
@@ -24,11 +24,9 @@ for k in filtro_sup:
 fig = px.scatter_mapbox(data[data.clae2_desc.isin(filtro)],lat = 'lat',lon = 'lon',  color='clae2_desc', 
                 size = 'empleo_rep', 
                 hover_data={'empleo':True,'empleo_rep':False,'lat':False,'lon':False,'clae2_desc':False},
-                #hover_data={'empleo':True,'lat':False,'lon':False,'clae2_desc':False},
                 hover_name='clae2_desc',
-                #width = 1000,
-                labels={'clae2_desc':'Rama'}
+                labels={'clae2_desc':'Rama'},
                 )
-fig.update_layout(mapbox_style = 'open-street-map')
+fig.update_layout(mapbox_style = 'open-street-map', legend ={'orientation':'h'} )
 
 st.plotly_chart(fig,use_container_width=True)
