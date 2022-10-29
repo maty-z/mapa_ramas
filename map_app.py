@@ -31,3 +31,12 @@ fig = px.scatter_mapbox(data[data.clae2_desc.isin(filtro)],lat = 'lat',lon = 'lo
 fig.update_layout(mapbox_style = 'open-street-map', legend ={'orientation':'h'} )
 
 st.plotly_chart (fig,use_container_width=True)
+
+with st.expander("Cantidad de trabajadores"):
+    fig = px.histogram(data[data.clae2_desc.isin(filtro)],y='empleo',color='clae2_desc', orientation='h',
+            text_auto = True, 
+            labels = {'clae2_desc':'Rama', 'empleo':'Trabajadores por establecimiento','count':'Cantidad'})
+    fig.update_layout(yaxis_title='Trabajadores por establecimiento', xaxis_title= 'Cantidad')
+
+    st.plotly_chart(fig,use_container_width=True)
+    #st.image("https://static.streamlit.io/examples/dice.jpg")
