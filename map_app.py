@@ -45,4 +45,4 @@ with st.expander("Cantidad de establecimientos"):
 
     st.plotly_chart(fig,use_container_width=True)
 
-st.write('Fuente de datos: Mapa productivo laboral argentino  \n _Ministerio de Economía_  \n _Ministerio de Trabajo, Empleo, y Seguridad social_')
+#st.write('Fuente de datos: Mapa productivo laboral argentino  \n _Ministerio de Economía_  \n _Ministerio de Trabajo, Empleo, y Seguridad social_')
