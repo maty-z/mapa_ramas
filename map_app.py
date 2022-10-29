@@ -25,7 +25,7 @@ fig = px.scatter_mapbox(data[data.clae2_desc.isin(filtro)],lat = 'lat',lon = 'lo
                 size = 'empleo_rep', 
                 hover_data={'empleo':True,'empleo_rep':False,'lat':False,'lon':False,'clae2_desc':False},
                 hover_name='clae2_desc',
-                labels={'clae2_desc':'Rama'},
+                labels={'clae2_desc':'Rama', 'empleo':'Cantidad de trabajadores'},
                 )
 fig.update_layout(mapbox_style = 'open-street-map', legend ={'orientation':'h'} )
 
