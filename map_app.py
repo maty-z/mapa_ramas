@@ -20,6 +20,7 @@ filtro = []
 for k in filtro_sup:
     filtro = filtro+ramas_agrupadas[k]
 
+data.empleo = data.empleo.apply(lambda x: x.split('.')[1])
 
 fig = px.scatter_mapbox(data[data.clae2_desc.isin(filtro)],lat = 'lat',lon = 'lon',  color='clae2_desc', 
                 size = 'empleo_rep', 
