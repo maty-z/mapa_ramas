@@ -20,7 +20,7 @@ filtro = []
 for k in filtro_sup:
     filtro = filtro+ramas_agrupadas[k]
 
-data.empleo = data.empleo.apply(lambda x: x.split('.')[1])
+data.empleo = data.empleo.apply(lambda x: x.split('.')[1][1:])
 
 fig = px.scatter_mapbox(data[data.clae2_desc.isin(filtro)],lat = 'lat',lon = 'lon',  color='clae2_desc', 
                 size = 'empleo_rep', 
@@ -35,8 +35,10 @@ st.plotly_chart (fig,use_container_width=True)
 with st.expander("Cantidad de trabajadores"):
     fig = px.histogram(data[data.clae2_desc.isin(filtro)],y='empleo',color='clae2_desc', orientation='h',
             text_auto = True, 
-            labels = {'clae2_desc':'Rama', 'empleo':'Trabajadores por establecimiento','count':'Cantidad'})
-    fig.update_layout(yaxis_title='Trabajadores por establecimiento', xaxis_title= 'Cantidad')
+            labels = {'clae2_desc':'Rama', 'empleo':'Trabajadores por establecimiento','count':'Cantidad'},
+            category_orders={'empleo':['1-9','10-49','50-199','200-499','500+']},
+            barmode = 'group')
+    fig.update_traces(textposition='outside')
+    fig.update_layout(yaxis_title='Trabajadores por establecimiento', xaxis_title= 'Cantidad',legend ={'orientation':'h'})
 
     st.plotly_chart(fig,use_container_width=True)
-    #st.image("https://static.streamlit.io/examples/dice.jpg")
