@@ -15,7 +15,7 @@ ramas_agrupadas['Energia'] = [ 'Suministro de electricidad, gas, vapor y aire ac
 
 #st.title('Mapa: fuerza obrera en el AMBA')
 
-filtro_sup = st.multiselect('Ramas',ramas_agrupadas,['Transporte'])
+filtro_sup = st.multiselect('Grupo de ramas',ramas_agrupadas,['Transporte'])
 filtro = []
 for k in filtro_sup:
     filtro = filtro+ramas_agrupadas[k]
