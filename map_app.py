@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-data = pd.read_csv(r'https://raw.githubusercontent.com/maty-z/mapa_ramas/main/distribucion_establecimientos_productivos_descripciones_AMBA_filtro.csv')
+#data = pd.read_csv(r'https://raw.githubusercontent.com/maty-z/mapa_ramas/main/distribucion_establecimientos_productivos_descripciones_AMBA_filtro.csv')
+data = pd.read_csv(r'C:\Users\mzylb\Documents\Geoinfo\Repositorios\mapa_ramas\distribucion_establecimientos_productivos_descripciones_AMBA_filtro.csv')
 
 ramas_agrupadas = {}
 ramas_agrupadas['Transporte'] = ['Transporte terrestre y por tuberías',
@@ -13,7 +14,7 @@ ramas_agrupadas['Alimentacion'] = ['Elaboración de productos alimenticios']
 ramas_agrupadas['Energia'] = [ 'Suministro de electricidad, gas, vapor y aire acondicionado',
                                 'Captación, tratamiento y distribución de agua']    
 
-st.title('Mapa: fuerza obrera en el AMBA')
+#st.title('Mapa: fuerza obrera en el AMBA')
 
 filtro_sup = st.multiselect('Ramas',ramas_agrupadas,['Transporte'])
 filtro = []
@@ -29,4 +30,4 @@ fig = px.scatter_mapbox(data[data.clae2_desc.isin(filtro)],lat = 'lat',lon = 'lo
                 )
 fig.update_layout(mapbox_style = 'open-street-map', legend ={'orientation':'h'} )
 
-st.plotly_chart(fig,use_container_width=True)
+st.plotly_chart (fig,use_container_width=True)
