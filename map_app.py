@@ -11,7 +11,19 @@ ramas_agrupadas['Transporte'] = ['Transporte terrestre y por tuberías',
 ramas_agrupadas['Salud y educacion'] = ['Enseñanza','Servicios de salud humana']
 ramas_agrupadas['Alimentacion'] = ['Elaboración de productos alimenticios']
 ramas_agrupadas['Energia'] = [ 'Suministro de electricidad, gas, vapor y aire acondicionado',
-                                'Captación, tratamiento y distribución de agua']    
+                                'Captación, tratamiento y distribución de agua']
+ramas_agrupadas['Mensajeria'] = ['Almacenamiento y actividades de apoyo al transporte',
+                                'Servicio de correo y mensajería']
+ramas_agrupadas['Metal'] = ['Fabricación de productos elaborados del metal, excepto maquinaria y equipo',
+                            'Fabricación de metales comunes']
+ramas_agrupadas['Vehiculos'] = ['Fabricación de vehículos automotores, remolques y semirremolques',
+                                'Fabricación de productos de caucho y vidrio']
+ramas_agrupadas['Hidrocarburos'] = ['Fabricación de productos de refinación de petróleo',
+                                    'Extracción de petróleo crudo y gas natural',
+                                    'Actividades de apoyo al petróleo y <la minería']
+ramas_agrupadas['Quimica'] = ['Fabricación de sustancias químicas']
+ramas_agrupadas['Telecomunicaciones'] = ['Telecomunicaciones']
+
 
 st.title('Mapa: fuerza obrera en el AMBA')
 
