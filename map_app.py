@@ -3,15 +3,19 @@ import pandas as pd
 import plotly.express as px
 
 data = pd.read_csv(r'https://raw.githubusercontent.com/maty-z/mapa_ramas/main/distribucion_establecimientos_productivos_descripciones_AMBA_filtro.csv')
+#data = pd.read_csv(r'C:\Users\mzylb\Documents\Geoinfo\Repositorios\mapa_ramas\distribucion_establecimientos_productivos_descripciones_AMBA_filtro.csv')
+
+st.set_page_config(layout='wide')
 
 ramas_agrupadas = {}
-ramas_agrupadas['Transporte'] = ['Transporte terrestre y por tuberías',
+ramas_agrupadas['Transporte'] = ['Transporte terrestre',
                                  'Transporte acuático',
-                                 'Transporte aéreo',]
+                                 'Transporte aéreo',
+                                 'Transporte por tuberías']
 ramas_agrupadas['Salud y educacion'] = ['Enseñanza','Servicios de salud humana']
 ramas_agrupadas['Alimentacion'] = ['Elaboración de productos alimenticios']
-ramas_agrupadas['Energia'] = [ 'Suministro de electricidad, gas, vapor y aire acondicionado',
-                                'Captación, tratamiento y distribución de agua']
+ramas_agrupadas['Energia'] = [ 'Suministro de electricidad',
+                               'Suministro de gas']
 ramas_agrupadas['Mensajeria'] = ['Almacenamiento y actividades de apoyo al transporte',
                                 'Servicio de correo y mensajería']
 ramas_agrupadas['Metal'] = ['Fabricación de productos elaborados del metal, excepto maquinaria y equipo',
@@ -47,7 +51,7 @@ st.plotly_chart (fig,use_container_width=True)
 with st.expander("Cantidad de establecimientos"):
     fig = px.histogram(data[data.clae2_desc.isin(filtro)],y='empleo',color='clae2_desc', orientation='h',
             text_auto = True, 
-            labels = {'clae2_desc':'Rama', 'empleo':'Trabajadores por establecimiento','count':'Cantidad'},
+            labels = {'clae2_desc':'Rama', 'empleo':'Trabajadores por establecimiento','%{x}':'Cantidad'},
             category_orders={'empleo':['1-9','10-49','50-199','200-499','500+']},
             barmode = 'group')
     fig.update_traces(textposition='outside')
@@ -55,6 +59,7 @@ with st.expander("Cantidad de establecimientos"):
                       xaxis_title= '<b>Cantidad de establecimientos</b>',
                       legend ={'orientation':'h'})
 
+    #st.write(fig.data)
     st.plotly_chart(fig,use_container_width=True)
 
 #st.write('Fuente de datos: Mapa productivo laboral argentino  \n _Ministerio de Economía_  \n _Ministerio de Trabajo, Empleo, y Seguridad social_')
