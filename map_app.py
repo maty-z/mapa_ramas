@@ -30,8 +30,13 @@ ramas_agrupadas['Telecomunicaciones'] = ['Telecomunicaciones']
 
 
 st.title('Mapa: fuerza obrera en el AMBA')
+try: 
+    user_input = st.experimental_get_query_params()
+    mapa_inicial = user_input['Rama']
+except:
+    mapa_inicial = ['Transporte']
 
-filtro_sup = st.multiselect('Seleccione grupo de ramas',ramas_agrupadas,['Transporte'])
+filtro_sup = st.multiselect('Seleccione grupo de ramas',ramas_agrupadas,mapa_inicial)
 filtro = []
 for k in filtro_sup:
     filtro = filtro+ramas_agrupadas[k]
