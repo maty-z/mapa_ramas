@@ -62,7 +62,7 @@ with st.expander("Cantidad de establecimientos"):
     fig.update_traces(textposition='outside')
     fig.update_layout(yaxis_title='<b>Cantidad de trabajadores por establecimiento</b>', 
                       xaxis_title= '<b>Cantidad de establecimientos</b>',
-                      legend ={'orientation':'h'})
+                      legend ={'orientation':'h', 'y': -0.155})
 
     #st.write(fig.data)
     st.plotly_chart(fig,use_container_width=True)
