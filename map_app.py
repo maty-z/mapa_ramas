@@ -14,15 +14,15 @@ ramas_agrupadas['Transporte y almacenamiento (logística)'] = ['Transporte terre
                                  'Transporte por tuberías',
                                  'Almacenamiento y actividades de apoyo al transporte',
                                  'Servicio de correo y mensajería']
-ramas_agrupadas['Salud y educación'] = ['Enseñanza','Servicios de salud humana']
+ramas_agrupadas['Salud y educació privada'] = ['Enseñanza','Servicios de salud humana']
 ramas_agrupadas['Alimentación'] = ['Elaboración de productos alimenticios']
 ramas_agrupadas['Energía'] = [ 'Suministro de electricidad',
                                'Suministro de gas']
-ramas_agrupadas['Metal'] = ['Fabricación de productos elaborados del metal, excepto maquinaria y equipo',
+ramas_agrupadas['Metalurgia'] = ['Fabricación de productos elaborados del metal, excepto maquinaria y equipo',
                             'Fabricación de metales comunes']
-ramas_agrupadas['Vehículos'] = ['Fabricación de vehículos automotores, remolques y semirremolques',
-                                'Fabricación de productos de caucho y vidrio']
-ramas_agrupadas['Combustible'] = ['Fabricación de productos de refinación de petróleo',
+ramas_agrupadas['Neumático y automotriz'] = ['Fabricación de vehículos automotores, remolques y semirremolques',
+                                'Fabricación de cubiertas y cámaras']
+ramas_agrupadas['Petróleo y combustible'] = ['Fabricación de productos de refinación de petróleo',
                                     'Extracción de petróleo crudo y gas natural',
                                     'Actividades de apoyo al petróleo y la minería']
 ramas_agrupadas['Química'] = ['Fabricación de sustancias químicas']
