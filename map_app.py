@@ -29,7 +29,7 @@ ramas_agrupadas['Química'] = ['Fabricación de sustancias químicas']
 ramas_agrupadas['Telecomunicaciones'] = ['Telecomunicaciones']
 
 
-st.title('Mapa: fuerza obrera en el AMBA')
+st.title('Establecimientos productivos en el AMBA')
 try: 
     user_input = st.experimental_get_query_params()
     mapa_inicial = user_input['Rama']
@@ -67,4 +67,4 @@ with st.expander("Cantidad de establecimientos"):
     #st.write(fig.data)
     st.plotly_chart(fig,use_container_width=True)
 
-#st.write('Fuente de datos: Mapa productivo laboral argentino  \n _Ministerio de Economía_  \n _Ministerio de Trabajo, Empleo, y Seguridad social_')
+st.write('Datos obtenidos a partir del **Mapa productivo laboral argentino** elaborado por  \n _Ministerio de Economía_  \n _Ministerio de Trabajo, Empleo, y Seguridad social_')
