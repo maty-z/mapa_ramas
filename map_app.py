@@ -14,7 +14,7 @@ ramas_agrupadas['Transporte y almacenamiento (logística)'] = ['Transporte terre
                                  'Transporte por tuberías',
                                  'Almacenamiento y actividades de apoyo al transporte',
                                  'Servicio de correo y mensajería']
-ramas_agrupadas['Salud y educació privada'] = ['Enseñanza','Servicios de salud humana']
+ramas_agrupadas['Salud y educación privada'] = ['Enseñanza','Servicios de salud humana']
 ramas_agrupadas['Alimentación'] = ['Elaboración de productos alimenticios']
 ramas_agrupadas['Energía'] = [ 'Suministro de electricidad',
                                'Suministro de gas']
