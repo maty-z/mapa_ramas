@@ -5,7 +5,7 @@ import plotly.express as px
 data = pd.read_csv(r'https://raw.githubusercontent.com/maty-z/mapa_ramas/main/distribucion_establecimientos_productivos_descripciones_AMBA_filtro.csv')
 #data = pd.read_csv(r'C:\Users\mzylb\Documents\Geoinfo\Repositorios\mapa_ramas\distribucion_establecimientos_productivos_descripciones_AMBA_filtro.csv')
 
-st.set_page_config(layout='wide')
+st.set_page_config(layout='wide',initial_sidebar_state='collapsed')
 
 ramas_agrupadas = {}
 ramas_agrupadas['Transporte'] = ['Transporte terrestre',
