@@ -8,24 +8,24 @@ data = pd.read_csv(r'https://raw.githubusercontent.com/maty-z/mapa_ramas/main/di
 st.set_page_config(layout='wide')
 
 ramas_agrupadas = {}
-ramas_agrupadas['Transporte'] = ['Transporte terrestre',
+ramas_agrupadas['Transporte y almacenamiento (logística)'] = ['Transporte terrestre',
                                  'Transporte acuático',
                                  'Transporte aéreo',
-                                 'Transporte por tuberías']
-ramas_agrupadas['Salud y educacion'] = ['Enseñanza','Servicios de salud humana']
-ramas_agrupadas['Alimentacion'] = ['Elaboración de productos alimenticios']
-ramas_agrupadas['Energia'] = [ 'Suministro de electricidad',
+                                 'Transporte por tuberías',
+                                 'Almacenamiento y actividades de apoyo al transporte',
+                                 'Servicio de correo y mensajería']
+ramas_agrupadas['Salud y educación'] = ['Enseñanza','Servicios de salud humana']
+ramas_agrupadas['Alimentación'] = ['Elaboración de productos alimenticios']
+ramas_agrupadas['Energía'] = [ 'Suministro de electricidad',
                                'Suministro de gas']
-ramas_agrupadas['Mensajeria'] = ['Almacenamiento y actividades de apoyo al transporte',
-                                'Servicio de correo y mensajería']
 ramas_agrupadas['Metal'] = ['Fabricación de productos elaborados del metal, excepto maquinaria y equipo',
                             'Fabricación de metales comunes']
-ramas_agrupadas['Vehiculos'] = ['Fabricación de vehículos automotores, remolques y semirremolques',
+ramas_agrupadas['Vehículos'] = ['Fabricación de vehículos automotores, remolques y semirremolques',
                                 'Fabricación de productos de caucho y vidrio']
-ramas_agrupadas['Hidrocarburos'] = ['Fabricación de productos de refinación de petróleo',
+ramas_agrupadas['Combustible'] = ['Fabricación de productos de refinación de petróleo',
                                     'Extracción de petróleo crudo y gas natural',
-                                    'Actividades de apoyo al petróleo y <la minería']
-ramas_agrupadas['Quimica'] = ['Fabricación de sustancias químicas']
+                                    'Actividades de apoyo al petróleo y la minería']
+ramas_agrupadas['Química'] = ['Fabricación de sustancias químicas']
 ramas_agrupadas['Telecomunicaciones'] = ['Telecomunicaciones']
 
 
@@ -34,7 +34,7 @@ try:
     user_input = st.experimental_get_query_params()
     mapa_inicial = user_input['Rama']
 except:
-    mapa_inicial = ['Transporte']
+    mapa_inicial = ['Transporte y almacenamiento (logística)']
 
 filtro_sup = st.multiselect('Seleccione grupo de ramas',ramas_agrupadas,mapa_inicial)
 filtro = []
