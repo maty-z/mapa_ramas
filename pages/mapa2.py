@@ -31,7 +31,7 @@ ramas_agrupadas['Telecomunicaciones'] = ['Telecomunicaciones']
 
 st.title('Mapa: fuerza obrera en el AMBA')
 
-filtro_sup = st.multiselect('Seleccione grupo de ramas',ramas_agrupadas,['Telecomunicaciones'])
+filtro_sup = st.multiselect('Seleccione grupo de ramas',ramas_agrupadas,['Hidrocarburos'])
 filtro = []
 for k in filtro_sup:
     filtro = filtro+ramas_agrupadas[k]
