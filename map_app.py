@@ -42,14 +42,38 @@ for k in filtro_sup:
     filtro = filtro+ramas_agrupadas[k]
 
 data.empleo = data.empleo.apply(lambda x: x.split('.')[1][1:])
+data['empleo_rep_2']=data.empleo_rep.map({5:6,25:10,125:15,350:21,500:28})
+df = pd.DataFrame({'empleo': {0: '1-9', 1: '10-49', 2: '50-199', 3: '200-499', 4: '500+'},
+                   'empleo_rep_2': {0: 6, 1: 10, 2: 15, 3: 21, 4: 28}})
 
 fig = px.scatter_mapbox(data[data.clae2_desc.isin(filtro)],lat = 'lat',lon = 'lon',  color='clae2_desc', 
-                size = 'empleo_rep', 
-                hover_data={'empleo':True,'empleo_rep':False,'lat':False,'lon':False,'clae2_desc':False},
+                size = 'empleo_rep_2', 
+                hover_data={'empleo':True,'empleo_rep_2':False,'lat':False,'lon':False,'clae2_desc':False},
                 hover_name='clae2_desc',
                 labels={'clae2_desc':'Rama', 'empleo':'Cantidad de trabajadores'},
                 )
+
 fig.update_layout(mapbox_style = 'open-street-map', legend ={'orientation':'h'} )
+fig.update_traces(marker={'sizemode':'diameter','sizeref':1})
+
+y0 = 10
+x0 = 15
+for ref in df.empleo_rep_2:
+    fig.add_shape(type="circle",
+        xref="paper", yref="paper",
+        xsizemode='pixel',ysizemode='pixel',
+        xanchor = 0, yanchor=0,
+        x0=x0-ref/2, y0=y0, x1=ref/2+x0, y1=ref+y0,
+        line_width=0,
+        fillcolor="black",  opacity=0.5
+    )
+    y0 += ref+10
+
+fig.add_annotation(xref="paper", yref="paper",x =.03, y =0.01, text='1-9 trabajadores',showarrow=False)
+fig.add_annotation(xref="paper", yref="paper",x =.03, y =0.08, text='10-49 trabajadores',showarrow=False)
+fig.add_annotation(xref="paper", yref="paper",x =.03, y =0.145, text='50-199 trabajadores',showarrow=False)
+fig.add_annotation(xref="paper", yref="paper",x =.03, y =0.24, text='200-499 trabajadores',showarrow=False)
+fig.add_annotation(xref="paper", yref="paper",x =.03, y =0.39, text='+500 trabajadores',showarrow=False)
 
 st.plotly_chart (fig,use_container_width=True)
 
@@ -64,7 +88,6 @@ with st.expander("Cantidad de establecimientos"):
                       xaxis_title= '<b>Cantidad de establecimientos</b>',
                       legend ={'orientation':'h', 'y': -0.155})
 
-    #st.write(fig.data)
     st.plotly_chart(fig,use_container_width=True)
 
 st.write('Datos obtenidos a partir del **Mapa productivo-laboral argentino** elaborado por:  \n * _Ministerio de Economía_  \n * _Ministerio de Trabajo, Empleo, y Seguridad social_')
