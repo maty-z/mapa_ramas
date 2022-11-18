@@ -95,8 +95,8 @@ fig = px.histogram(data[data.clae2_desc.isin(filtro)],x='empleo',color='clae2_de
         category_orders={'empleo':['1-9','10-49','50-199','200-499','500+']},
         barmode = 'group')
 fig.update_traces(textposition='outside')
-fig.update_layout(yaxis_title='<b>Cantidad de trabajadores por establecimiento</b>', 
-                    xaxis_title= '<b>Cantidad de establecimientos</b>',
+fig.update_layout(xaxis_title='<b>Cantidad de trabajadores por establecimiento</b>', 
+                    yaxis_title= '<b>Cantidad de establecimientos</b>',
                     legend ={'orientation':'h', 'y': -0.155})
 
 # Make histogram in page
