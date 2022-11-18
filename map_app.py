@@ -1,12 +1,18 @@
+# Import Libraries
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+# Import processed data
 data = pd.read_csv(r'https://raw.githubusercontent.com/maty-z/mapa_ramas/main/distribucion_establecimientos_productivos_descripciones_AMBA_filtro.csv')
-#data = pd.read_csv(r'C:\Users\mzylb\Documents\Geoinfo\Repositorios\mapa_ramas\distribucion_establecimientos_productivos_descripciones_AMBA_filtro.csv')
 
+# Config page style in wide mode
 st.set_page_config(layout='wide')
 
+# Set title page
+st.title('Establecimientos productivos en el AMBA')
+
+# Custom data filter. Config "Rama" of interest dictionary
 ramas_agrupadas = {}
 ramas_agrupadas['Transporte y almacenamiento (logística)'] = ['Transporte terrestre',
                                  'Transporte acuático',
@@ -29,26 +35,29 @@ ramas_agrupadas['Química'] = ['Fabricación de sustancias químicas']
 ramas_agrupadas['Telecomunicaciones'] = ['Telecomunicaciones']
 
 
-st.title('Establecimientos productivos en el AMBA')
+# Select from url "Rama" of interest
 try: 
     user_input = st.experimental_get_query_params()
     mapa_inicial = user_input['Rama']
 except:
     mapa_inicial = ['Transporte y almacenamiento (logística)']
 
+# Make filter from group of "Rama" of interest
 filtro_sup = st.multiselect('Seleccione grupo de ramas',ramas_agrupadas,mapa_inicial)
 filtro = []
 for k in filtro_sup:
     filtro = filtro+ramas_agrupadas[k]
 
+# Minimal data preprocess, for clarity in labels and in marker's size
 data.empleo = data.empleo.apply(lambda x: x.split('.')[1][1:])
-data['empleo_rep_2']=data.empleo_rep.map({5:6,25:10,125:15,350:21,500:28})
+data['empleo_rep']=data.empleo_rep.map({5:6,25:10,125:15,350:21,500:28})
 df = pd.DataFrame({'empleo': {0: '1-9', 1: '10-49', 2: '50-199', 3: '200-499', 4: '500+'},
-                   'empleo_rep_2': {0: 6, 1: 10, 2: 15, 3: 21, 4: 28}})
+                   'empleo_rep': {0: 6, 1: 10, 2: 15, 3: 21, 4: 28}})
 
+# Make figure
 fig = px.scatter_mapbox(data[data.clae2_desc.isin(filtro)],lat = 'lat',lon = 'lon',  color='clae2_desc', 
-                size = 'empleo_rep_2', 
-                hover_data={'empleo':True,'empleo_rep_2':False,'lat':False,'lon':False,'clae2_desc':False},
+                size = 'empleo_rep', 
+                hover_data={'empleo':True,'empleo_rep':False,'lat':False,'lon':False,'clae2_desc':False},
                 hover_name='clae2_desc',
                 labels={'clae2_desc':'Rama', 'empleo':'Cantidad de trabajadores'},
                 )
@@ -56,9 +65,10 @@ fig = px.scatter_mapbox(data[data.clae2_desc.isin(filtro)],lat = 'lat',lon = 'lo
 fig.update_layout(mapbox_style = 'open-street-map', legend ={'orientation':'h'} )
 fig.update_traces(marker={'sizemode':'diameter','sizeref':1})
 
+# Make annotations for reference of markers' size. The parameters were setted after a trial and error process
 y0 = 10
 x0 = 15
-for ref in df.empleo_rep_2:
+for ref in df.empleo_rep:
     fig.add_shape(type="circle",
         xref="paper", yref="paper",
         xsizemode='pixel',ysizemode='pixel',
@@ -75,19 +85,22 @@ fig.add_annotation(xref="paper", yref="paper",x =.03, y =0.145, text='50-199 tra
 fig.add_annotation(xref="paper", yref="paper",x =.03, y =0.24, text='200-499 trabajadores',showarrow=False)
 fig.add_annotation(xref="paper", yref="paper",x =.03, y =0.39, text='+500 trabajadores',showarrow=False)
 
+# Make plot in page
 st.plotly_chart (fig,use_container_width=True)
 
-with st.expander("Cantidad de establecimientos"):
-    fig = px.histogram(data[data.clae2_desc.isin(filtro)],y='empleo',color='clae2_desc', orientation='h',
-            text_auto = True, 
-            labels = {'clae2_desc':'Rama', 'empleo':'Trabajadores por establecimiento','%{x}':'Cantidad'},
-            category_orders={'empleo':['1-9','10-49','50-199','200-499','500+']},
-            barmode = 'group')
-    fig.update_traces(textposition='outside')
-    fig.update_layout(yaxis_title='<b>Cantidad de trabajadores por establecimiento</b>', 
-                      xaxis_title= '<b>Cantidad de establecimientos</b>',
-                      legend ={'orientation':'h', 'y': -0.155})
+# Make histogram
+fig = px.histogram(data[data.clae2_desc.isin(filtro)],x='empleo',color='clae2_desc', orientation='v',
+        text_auto = True, 
+        labels = {'clae2_desc':'Rama', 'empleo':'Trabajadores por establecimiento','%{x}':'Cantidad'},
+        category_orders={'empleo':['1-9','10-49','50-199','200-499','500+']},
+        barmode = 'group')
+fig.update_traces(textposition='outside')
+fig.update_layout(yaxis_title='<b>Cantidad de trabajadores por establecimiento</b>', 
+                    xaxis_title= '<b>Cantidad de establecimientos</b>',
+                    legend ={'orientation':'h', 'y': -0.155})
 
-    st.plotly_chart(fig,use_container_width=True)
+# Make histogram in page
+st.plotly_chart(fig,use_container_width=True)
 
+# Write credits in page
 st.write('Datos obtenidos a partir del **Mapa productivo-laboral argentino** elaborado por:  \n * _Ministerio de Economía_  \n * _Ministerio de Trabajo, Empleo, y Seguridad social_')
